@@ -2,12 +2,38 @@
 var imp1=[ ["Digital",0.5] , ["Machine",1] , ["CAT",1] ,["Power System",1]  , ["Signal and System",1] , 
 ["Miscellaneous",1] ];
 var old_index=6;
-var imp2=[ ["Meteor",2] , ["JAVA",2] , ["C",2],["CAT",2] ];
-var phrs=0,shrs=0,total_shrs=0,total_phrs=0,prob_cal,relax_ratio;
+var imp2=[ ["Coursera",2] , ["JAVA or C",2],["CAT",2],["Miscellaneous",2] ];
+var phrs=0,shrs=0,total_shrs=0,total_phrs=0,prob_cal,relax_ratio,old_time,new_time,time_diff_s,time_diff_m,clock,hrs;
 var index=0;
-
-
-		//Try to find the order for imp1 subjects
+		function count()
+		{
+			var d = new Date();
+			new_time = d.getTime();
+			//Note-have to change seconds to minute
+			time_diff_m=hrs*6-Math.floor((new_time - old_time)/1000);
+			
+			$("#countdown").html(time_diff_m+" minutes remaining to work");
+			if(time_diff_m=== 0)
+			{
+				clearInterval(clock);
+				document.getElementById('shuffle').addEventListener("click",probab);
+				$('#shuffle').show();
+				$("#countdown").html("Get ready for next task")
+				$("#message").html("Time limit crossed");
+				
+			}
+		}
+		function countdown()
+		{
+			"use strict";
+			$('#shuffle').hide();
+			document.getElementById('shuffle').removeEventListener("click",probab);
+			"use strict";					
+			clock= setInterval(count,1000);
+			
+			
+		}
+				//Try to find the order for imp1 subjects
 		function pselecter()
 		{
 			"use strict";
@@ -18,6 +44,11 @@ var index=0;
 						var mul=(Math.floor((2*Math.random()))+1);
 						phrs=imp1[index][1]*mul;
 						$("#message").html("Study "+imp1[index][0]+" for "+phrs+"hrs.");
+						var d = new Date();
+						old_time = d.getTime(); 
+						//old_time=Date.getTime();
+						hrs=phrs;
+						countdown(phrs);
 						//Use below function when above function is not working.
 						//alert("Study "+imp1[index][0]+" for "+phrs+"hrs.");
 						total_phrs=total_phrs+phrs;
@@ -45,6 +76,11 @@ var index=0;
 						var mul=Math.floor((Math.random()))+1;
 						shrs=imp2[index][1]*mul;
 						$("#message").html("Study "+imp2[index][0]+" for "+shrs+"hrs.");
+						var d = new Date();
+						old_time = d.getTime(); 
+						//old_time=Date.getTime();
+						hrs=shrs;
+						countdown(shrs);
 						//Use below function when above function is not working.
 						//alert ("Study "+imp2[index][0]+" for "+shrs+"hrs.");
 						total_shrs=total_shrs+shrs;
