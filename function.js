@@ -10,7 +10,7 @@ var index=0;
 			var d = new Date();
 			new_time = d.getTime();
 			//Note-have to change seconds to minute
-			time_diff_m=hrs*6-Math.floor((new_time - old_time)/60000);
+			time_diff_m=hrs*60-Math.floor((new_time - old_time)/60000);
 			
 			$("#countdown").html(time_diff_m+" minutes remaining to work");
 			if(time_diff_m=== 0)
