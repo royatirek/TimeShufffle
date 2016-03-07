@@ -2,7 +2,7 @@
 var imp1=[ ["Digital",0.5] , ["Machine",1] , ["CAT",1] ,["Power System",1]  , ["Signal and System",1] , 
 ["Miscellaneous",1] ];
 var old_index=6;
-var imp2=[ ["Coursera",2] , ["JAVA or C",2],["CAT",2],["Miscellaneous",2] ];
+var imp2=[ ["Meteor",2] , ["JAVA or C",2],["CAT",2],["Miscellaneous",2] ];
 var phrs=0,shrs=0,total_shrs=0,total_phrs=0,prob_cal,relax_ratio,old_time,new_time,time_diff_s,time_diff_m,clock,hrs;
 var index=0;
 		function count()
@@ -10,7 +10,7 @@ var index=0;
 			var d = new Date();
 			new_time = d.getTime();
 			//Note-have to change seconds to minute
-			time_diff_m=hrs*6-Math.floor((new_time - old_time)/1000);
+			time_diff_m=hrs*6-Math.floor((new_time - old_time)/60000);
 			
 			$("#countdown").html(time_diff_m+" minutes remaining to work");
 			if(time_diff_m=== 0)
@@ -18,7 +18,7 @@ var index=0;
 				clearInterval(clock);
 				document.getElementById('shuffle').addEventListener("click",probab);
 				$('#shuffle').show();
-				$("#countdown").html("Get ready for next task")
+				$("#countdown").html("Get ready for next task");
 				$("#message").html("Congrats you have done your work");
 				
 			}
@@ -36,7 +36,7 @@ var index=0;
 				//Try to find the order for imp1 subjects
 		function pselecter()
 		{
-			"use strict";
+			
 		index=Math.floor(Math.random()*6);
 						if(old_index!=index && total_phrs<4*relax_ratio)
 						{	
@@ -68,7 +68,7 @@ var index=0;
 		//Try to find the rorder imp2 subjects
 		function sselecter()
 		{
-				"use strict";
+				
 				index=Math.floor(Math.random()*4);
 						if(old_index!=index && total_shrs<6*relax_ratio)
 						{	
@@ -121,25 +121,31 @@ var index=0;
 					}
 				else
 					{
-						prob_cal=Math.floor(3*Math.random());
+						prob_cal=Math.floor(2*Math.random());
+						relax_ratio=0.5;
+						
 					}
 					//Different if function
 				if(prob_cal % 2==0)
 					{
-					sselecter();
 					relax_ratio=0.4;
+					sselecter();
+					
 					}
 				else
 					{
-					pselecter();
 					relax_ratio=0.5;
-					}
+					pselecter();
+					
+					} 
+				
 			}
 		
 		
     
 	//error was caused when window.load was not there as html was rendered after javascript was loaded.click function should be added after the whole DOM has loaded.
 	window.onload = function () {
+	
 	
     document.getElementById('shuffle').addEventListener("click",probab);
 	
