@@ -1,8 +1,21 @@
 /* CSS Document */
 .wrapper {
 	text-align:center;
+	font-size:30px;
+	margin-top:200px;
+	
 }
 .button {
     position: absolute;
     top: 50%;
+	
+}
+.btn
+{
+	font-size:30px;
+}
+#message {
+	font-size:38px;
+	color:#0815FD;
+	
 }
