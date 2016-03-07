@@ -19,7 +19,7 @@ var index=0;
 				document.getElementById('shuffle').addEventListener("click",probab);
 				$('#shuffle').show();
 				$("#countdown").html("Get ready for next task")
-				$("#message").html("Time limit crossed");
+				$("#message").html("Congrats you have done your work");
 				
 			}
 		}
